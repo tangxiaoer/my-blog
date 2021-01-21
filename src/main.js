@@ -6,7 +6,7 @@ import ApiService from "@/core/services/api.service";
 import MockService from "@/core/mock/mock.service";
 import { VERIFY_AUTH } from "@/core/services/store/auth.module";
 import { RESET_LAYOUT_CONFIG } from "@/core/services/store/config.module";
-
+import axios from "axios"
 Vue.config.productionTip = false;
 
 // Global 3rd party plugins
@@ -32,9 +32,9 @@ import "@mdi/font/css/materialdesignicons.css";
 
 // API service init
 ApiService.init();
-
+Vue.prototype.$axios = axios
 // Remove this to disable mock API
-MockService.init();
+//MockService.init();
 
 router.beforeEach((to, from, next) => {
   // Ensure we checked auth before each page load.
