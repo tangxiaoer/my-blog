@@ -301,7 +301,7 @@
 
 <script>
 import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
-import {getTerminal} from "@/api/index.js";
+import {checklogin} from "@/api/index.js";
 // FormValidation plugins
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
@@ -452,11 +452,24 @@ export default {
 
       // dummy delay
       setTimeout(() => {
+        let data={
+          usr: this.form.email,
+          psw: this.form.password
+        }
+      //  checklogin(data).then((res) => {
+      //   console.log(res.data)
+      //   if(res.data.status==200)
+      //   {
+      //     this.$router.push({ name: "dashboard" })
+      //   }
+      //  });
         // send login request
-        this.$store
-          .dispatch(LOGIN, { email, password })
+         this.$store
+          .dispatch(LOGIN,  data)
           // go to which page after successfully login
-          .then(() => this.$router.push({ name: "dashboard" }))
+          .then(() => {
+            this.$router.push({ name: "dashboard" })
+          })
           .catch(() => {});
 
         submitButton.classList.remove(
@@ -529,14 +542,17 @@ export default {
       alert("chenggong")
     },
     test(){
-      getTerminal().then(res => (
-        console.log(res.data)
-      ));
+      // getTerminal().then(res => (
+      //   console.log(res.data)
+      // ));
+      let data={
+          usr:"admin",
+          psw:"Admin"
+        }
 
-
-      // this.$axios
-      // .get('http://10.24.30.185:8080/testAPIProject/api/VehicleQueue/getString',)
-      // .then(response => (console.log(response)))
+      this.$axios
+      .post('http://175.24.9.165:8001/login/',data)
+      .then(response => (console.log(response)))
     }
   }
 };

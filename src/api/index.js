@@ -2,4 +2,4 @@
 import { fetchGet, fetchPost } from "@/utils/http.js";
 
 
-export const getTerminal = () => fetchGet('/login');
+export const checklogin = (parms) => fetchPost('/login/',parms);
