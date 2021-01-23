@@ -35,9 +35,12 @@ const actions = {
       ApiService.post("login/check/", credentials)
         .then(({ data }) => {
           console.log("Here what post returns", data);
-          if(data['token']!=''){
+          if(data['status']==='200'){
             context.commit(SET_AUTH, data);
-            resolve(data);
+            resolve('true');
+          }else
+          {
+            resolve('false')
           }
           
         })

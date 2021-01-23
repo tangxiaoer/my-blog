@@ -467,7 +467,8 @@ export default {
          this.$store
           .dispatch(LOGIN,  data)
           // go to which page after successfully login
-          .then(() => {
+          .then((res) => {
+            console.log(res)
             this.$router.push({ name: "dashboard" })
           })
           .catch(() => {});
