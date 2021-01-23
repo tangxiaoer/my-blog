@@ -13,7 +13,6 @@
 @import "assets/plugins/flaticon/flaticon.css";
 @import "assets/plugins/flaticon2/flaticon.css";
 @import "assets/plugins/keenthemes-icons/font/ki.css";
-
 // Main demo style scss
 @import "assets/sass/style.vue";
 

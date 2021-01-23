@@ -12,27 +12,36 @@
       <!--begin::Aside-->
       <div
         class="login-aside d-flex flex-column flex-row-auto"
-        style="background-color: #F2C98A;"
-      >
+        style="background-color: #CCFF99;"
+      >      
         <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
-          <a href="#" class="text-center mb-10">
+          <!-- <a href="#" class="text-center mb-10">
             <img
               src="media/logos/logo-letter-1.png"
               class="max-h-70px"
               alt=""
             />
-          </a>
-          <h3
-            class="font-weight-bolder text-center font-size-h4 font-size-h1-lg"
-            style="color: #986923;"
+          </a> -->
+          <h5
+            class="font-weight-bolder text-center font-size-h4"
+            style="color: #986923;font-size:1.5rem!important"
           >
-            Discover Amazing Metronic <br />with great build tools
-          </h3>
+            Beautiful is better than ugly. <br />Explicit is better than implicit.<br />
+            Simple is better than complex. <br />Complex is better than complicated.<br />
+            Flat is better than nested. <br />Sparse is better than dense.<br />
+            Readability counts. <br />Special cases aren't special enough to break the rules.<br />
+            Although practicality beats purity. <br />Errors should never pass silently.<br />
+            Unless explicitly silenced. <br />In the face of ambiguity, refuse the temptation to guess.<br />
+            There should be one-- and preferably only one --obvious way to do it. <br />Although that way may not be obvious at first unless you're Dutch.<br />
+            Now is better than never. <br />Although never is often better than *right* now.<br />
+            If the implementation is hard to explain, it's a bad idea. <br />If the implementation is easy to explain, it may be a good idea.<br />
+            Namespaces are one honking great idea -- let's do more of those!
+          </h5>
         </div>
-        <div
+        <!-- <div
           class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
           :style="{ backgroundImage: `url(${backgroundImage})` }"
-        ></div>
+        ></div> -->
       </div>
       <!--begin::Aside-->
       <!--begin::Content-->
@@ -59,7 +68,7 @@
                     id="kt_login_signup"
                     class="text-primary font-weight-bolder"
                     @click="showForm('signup')"
-                    >Create an Account</a
+                    >创建账号</a
                   ></span
                 >
               </div>
@@ -90,7 +99,7 @@
                     class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5"
                     id="kt_login_forgot"
                     @click="showForm('forgot')"
-                    >Forgot Password ?</a
+                    >忘记密码 ?</a
                   >
                 </div>
                 <div
@@ -108,7 +117,7 @@
                   />
                 </div>
               </div>
-              <div class="pb-lg-0 pb-5">
+              <div class="pb-lg-0 pb-5"><!--  -->
                 <button
                   ref="kt_login_signin_submit"
                   class="btn btn-primary font-weight-bolder font-size-h6 px-15 py-4 my-3 mr-3"
@@ -118,10 +127,11 @@
                 <button
                   type="button"
                   class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg"
+                  @click="test()"
                 >
                   <span class="svg-icon svg-icon-md">
                     <inline-svg
-                      src="media/svg/social-icons/google.svg"
+                      src="media/svg/logos/visitor.svg"
                     /> </span
                   >游客访问
                 </button>
@@ -291,7 +301,7 @@
 
 <script>
 import formValidation from "@/assets/plugins/formvalidation/dist/es6/core/Core";
-
+import {getTerminal} from "@/api/index.js";
 // FormValidation plugins
 import Trigger from "@/assets/plugins/formvalidation/dist/es6/plugins/Trigger";
 import Bootstrap from "@/assets/plugins/formvalidation/dist/es6/plugins/Bootstrap";
@@ -300,7 +310,7 @@ import SubmitButton from "@/assets/plugins/formvalidation/dist/es6/plugins/Submi
 import KTUtil from "@/assets/js/components/util";
 import { mapGetters, mapState } from "vuex";
 import { LOGIN, LOGOUT, REGISTER } from "@/core/services/store/auth.module";
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"; 
 
 export default {
   name: "login-1",
@@ -309,8 +319,8 @@ export default {
       state: "signin",
       // Remove this dummy login info
       form: {
-        email: "admin@demo.com",
-        password: "demo"
+        email: "admin",
+        password: ""
       }
     };
   },
@@ -514,6 +524,19 @@ export default {
         KTUtil.getById(form_name),
         "animate__animated animate__backInUp"
       );
+    },
+    Login(){
+      alert("chenggong")
+    },
+    test(){
+      getTerminal().then(res => (
+        console.log(res.data)
+      ));
+
+
+      // this.$axios
+      // .get('http://10.24.30.185:8080/testAPIProject/api/VehicleQueue/getString',)
+      // .then(response => (console.log(response)))
     }
   }
 };
