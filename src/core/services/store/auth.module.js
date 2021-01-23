@@ -32,11 +32,14 @@ const getters = {
 const actions = {
   [LOGIN](context, credentials) {
     return new Promise(resolve => {
-      ApiService.post("login", credentials)
+      ApiService.post("login/check/", credentials)
         .then(({ data }) => {
-          // console.log("Here what post returns", data);
-          context.commit(SET_AUTH, data);
-          resolve(data);
+          console.log("Here what post returns", data);
+          if(data['token']!=''){
+            context.commit(SET_AUTH, data);
+            resolve(data);
+          }
+          
         })
         .catch(({ response }) => {
           context.commit(SET_ERROR, response.data.errors);
@@ -61,8 +64,9 @@ const actions = {
   [VERIFY_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.get("verify")
+      ApiService.get("login/verify")
         .then(({ data }) => {
+          console.log(data)
           context.commit(SET_AUTH, data);
         })
         .catch(({ response }) => {
