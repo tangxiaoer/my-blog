@@ -125,9 +125,9 @@
                   登录
                 </button>
                 <button
-                  type="button"
+                  
                   class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg"
-                  @click="test()"
+                  ref="kt_login_signin_submit"
                 >
                   <span class="svg-icon svg-icon-md">
                     <inline-svg
@@ -359,7 +359,7 @@ export default {
         }
       },
       plugins: {
-        trigger: new Trigger(),
+        trigger: new Trigger(),   
         submitButton: new SubmitButton(),
         bootstrap: new Bootstrap()
       }
@@ -469,7 +469,22 @@ export default {
           // go to which page after successfully login
           .then((res) => {
             console.log(res)
-            this.$router.push({ name: "dashboard" })
+            if(res==='true')
+            {
+              this.$router.push({ name: "dashboard" })
+            }
+            else{
+              this.form.email=''
+              this.form.password=' '
+              Swal.fire({
+        title: "",
+        text: "Please, provide correct data!",
+        icon: "error",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      });
+            }
+            
           })
           .catch(() => {});
 
