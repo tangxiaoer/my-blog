@@ -17,6 +17,18 @@
           v-bind:key="i"
           v-bind:class="{ 'mb-9': lastElement(i) }"
         >
+          <div class="d-flex align-items-center py-lg-0 py-2">
+            <div class="d-flex flex-column text-right">
+              <span class="text-dark-75 font-weight-bolder font-size-h4">{{
+                item.text4
+              }}</span>
+              <span class="text-muted font-size-sm font-weight-bolder"
+                >votes</span
+              >
+            </div>
+          </div>
+
+          
           <!--begin::Symbol-->
           <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
             <div
@@ -44,16 +56,7 @@
           </div>
           <!--end::Title-->
           <!--begin::Info-->
-          <div class="d-flex align-items-center py-lg-0 py-2">
-            <div class="d-flex flex-column text-right">
-              <span class="text-dark-75 font-weight-bolder font-size-h4">{{
-                item.text4
-              }}</span>
-              <span class="text-muted font-size-sm font-weight-bolder"
-                >votes</span
-              >
-            </div>
-          </div>
+
           <!--end::Info-->
         </div>
         <!--end::Item-->
