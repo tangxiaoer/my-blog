@@ -124,10 +124,11 @@
                 >
                   登录
                 </button>
-                <button
-                  
+
+
+                <button                
                   class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg"
-                  ref="kt_login_signin_submit"
+                  @click="setVisitorForm()"
                 >
                   <span class="svg-icon svg-icon-md">
                     <inline-svg
@@ -332,7 +333,7 @@ export default {
 
     backgroundImage() {
       return (
-        process.env.BASE_URL + "media/svg/illustrations/login-visual-1.svg"
+        process.env.BASE_URL + "/media/svg/illustrations/login-visual-1.svg"
       );
     }
   },
@@ -496,6 +497,63 @@ export default {
       }, 2000);
     });
 
+
+    this.fv.on("core.form.invalid", () => {
+
+      // clear existing errors
+      this.$store.dispatch(LOGOUT);
+
+      // set spinner to submit button
+      const submitButton = this.$refs["kt_login_signin_submit_visitor"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
+
+      // dummy delay
+      setTimeout(() => {
+        let data={
+          usr: 'visitor',
+          psw: '123456'
+        }
+      //  checklogin(data).then((res) => {
+      //   console.log(res.data)
+      //   if(res.data.status==200)
+      //   {
+      //     this.$router.push({ name: "dashboard" })
+      //   }
+      //  });
+        // send login request
+         this.$store
+          .dispatch(LOGIN,  data)
+          // go to which page after successfully login
+          .then((res) => {
+            console.log(res)
+            if(res==='true')
+            {
+              this.$router.push({ name: "dashboard" })
+            }
+            else{
+              this.form.email=''
+              this.form.password=' '
+              Swal.fire({
+        title: "",
+        text: "Please, provide correct data!",
+        icon: "error",
+        confirmButtonClass: "btn btn-secondary",
+        heightAuto: false
+      });
+            }
+            
+          })
+          .catch(() => {});
+
+        submitButton.classList.remove(
+          "spinner",
+          "spinner-light",
+          "spinner-right"
+        );
+      }, 2000);
+    });
+
+
     this.fv.on("core.form.invalid", () => {
       Swal.fire({
         title: "",
@@ -557,18 +615,40 @@ export default {
     Login(){
       alert("chenggong")
     },
-    test(){
-      // getTerminal().then(res => (
-      //   console.log(res.data)
-      // ));
-      let data={
-          usr:"admin",
-          psw:"Admin"
-        }
+    setVisitorForm(){
+      // let data={
+      //     usr:"admin",
+      //     psw:"Admin"
+      //   }
 
-      this.$axios
-      .post('http://175.24.9.165:8001/login/',data)
-      .then(response => (console.log(response)))
+      // this.$axios
+      // .post('http://175.24.9.165:8001/login/',data)
+      // .then(response => (console.log(response)))
+      // this.form.email='visitor'
+      // this.form.password='123456'
+      let data={
+          usr: 'visitor',
+          psw: '123456'
+        }
+      //  checklogin(data).then((res) => {
+      //   console.log(res.data)
+      //   if(res.data.status==200)
+      //   {
+      //     this.$router.push({ name: "dashboard" })
+      //   }
+      //  });
+        // send login request
+         this.$store
+          .dispatch(LOGIN,  data)
+          // go to which page after successfully login
+          .then((res) => {
+            console.log(res)
+            if(res==='true')
+            {
+              this.$router.push({ name: "dashboard" })
+            }
+            
+          })
     }
   }
 };

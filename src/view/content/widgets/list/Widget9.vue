@@ -4,42 +4,42 @@
     <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
-          >Authors Earnings</span
+          >文章摘要</span
         >
         <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >More than 400+ new members</span
-        >
+          >My Notebook</span
+        > 
       </h3>
       <div class="card-toolbar">
         <ul class="nav nav-pills nav-pills-sm nav-dark-75">
           <li class="nav-item">
             <a
               class="nav-link py-2 px-4"
-              :class="{ active: this.show === 'month' }"
+              :class="{ active: this.show === 'language' }"
               data-toggle="tab"
               href="#kt_tab_pane_3_1"
-              @click="show = 'month'"
-              >Month</a
+              @click="show = 'language'"
+              >Language</a
             >
           </li>
           <li class="nav-item">
             <a
               class="nav-link py-2 px-4"
-              :class="{ active: this.show === 'week' }"
+              :class="{ active: this.show === 'Algorithm' }"
               data-toggle="tab"
               href="#kt_tab_pane_3_2"
-              @click="show = 'week'"
-              >Week</a
+              @click="show = 'Algorithm'"
+              >Algorithm</a
             >
           </li>
           <li class="nav-item">
             <a
               class="nav-link py-2 px-4"
-              :class="{ active: this.show === 'day' }"
+              :class="{ active: this.show === 'SQL' }"
               data-toggle="tab"
               href="#kt_tab_pane_3_3"
-              @click="show = 'day'"
-              >Day</a
+              @click="show = 'SQL'"
+              >SQL</a
             >
           </li>
         </ul>
@@ -75,10 +75,10 @@
                   <a
                     href="#"
                     class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg"
-                    >{{ item.name }}</a
+                    >{{ item.title }}</a
                   >
                   <span class="text-muted font-weight-bold d-block">{{
-                    item.desc
+                    item.abstract
                   }}</span>
                 </td>
                 <td></td>
@@ -99,9 +99,9 @@
                   >
                 </td>
                 <td class="text-right pr-0">
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
+                  <a  class="btn btn-icon btn-light btn-sm" @click="test(item.id)">
+                    <!-- href="#/article" -->
                     <span class="svg-icon svg-icon-md svg-icon-success">
-                      <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
                       <inline-svg
                         src="media/svg/icons/Navigation/Arrow-right.svg"
                       />
@@ -121,145 +121,76 @@
 </template>
 
 <script>
+import {getAbstract} from "@/api/index.js";
 export default {
+  
   name: "widget-9",
   data() {
     return {
-      show: "day",
-      month: [
-        {
-          img: "media/svg/avatars/018-girl-9.svg",
-          name: "Jessie Clarcson",
-          desc: "HTML, CSS Coding",
-          paid: "$1,200,000",
-          percentage: "+52%",
-          class: "warning"
-        },
-        {
-          img: "media/svg/avatars/001-boy.svg",
-          name: "Brad Simmons",
-          desc: "Successful Fellas",
-          paid: "$2,000,000",
-          percentage: "+28%",
-          class: "primary"
-        },
-        {
-          img: "media/svg/avatars/047-girl-25.svg",
-          name: "Lebron Wayde",
-          desc: "ReactJS Developer",
-          paid: "$3,400,000",
-          percentage: "-34%",
-          class: "danger"
-        },
-        {
-          img: "media/svg/avatars/043-boy-18.svg",
-          name: "Kevin Leonard",
-          desc: "Art Director",
-          paid: "$35,600,000",
-          percentage: "+230%",
-          class: "success"
-        },
-        {
-          img: "media/svg/avatars/014-girl-7.svg",
-          name: "Natali Trump",
-          desc: "UI/UX Designer",
-          paid: "$4,500,000",
-          percentage: "+48%",
-          class: "success"
-        }
+      show: "language",
+      language: [
+        // {
+        //   img: "media/svg/avatars/018-girl-9.svg",
+        //   name: "Jessie Clarcson",
+        //   desc: "HTML, CSS Coding",
+        //   paid: "$1,200,000",
+        //   percentage: "+52%",
+        //   class: "warning"
+        // }
       ],
-      week: [
-        {
-          img: "media/svg/avatars/018-girl-9.svg",
-          name: "Jessie Clarcson",
-          desc: "HTML, CSS Coding",
-          paid: "$1,200,000",
-          percentage: "+52%",
-          class: "warning"
-        },
-        {
-          img: "media/svg/avatars/014-girl-7.svg",
-          name: "Natali Trump",
-          desc: "UI/UX Designer",
-          paid: "$4,500,000",
-          percentage: "+48%",
-          class: "success"
-        },
-        {
-          img: "media/svg/avatars/047-girl-25.svg",
-          name: "Lebron Wayde",
-          desc: "ReactJS Developer",
-          paid: "$3,400,000",
-          percentage: "-34%",
-          class: "danger"
-        },
-        {
-          img: "media/svg/avatars/043-boy-18.svg",
-          name: "Kevin Leonard",
-          desc: "Art Director",
-          paid: "$35,600,000",
-          percentage: "+230%",
-          class: "success"
-        },
-        {
-          img: "media/svg/avatars/001-boy.svg",
-          name: "Brad Simmons",
-          desc: "Successful Fellas",
-          paid: "$2,000,000",
-          percentage: "+28%",
-          class: "primary"
-        }
+      Algorithm: [       
+        // {
+        //   img: "media/svg/avatars/001-boy.svg",
+        //   name: "Brad Simmons",
+        //   desc: "Successful Fellas",
+        //   paid: "$2,000,000",
+        //   percentage: "+28%",
+        //   class: "primary"
+        // }
       ],
-      day: [
-        {
-          img: "media/svg/avatars/001-boy.svg",
-          name: "Brad Simmons",
-          desc: "Successful Fellas",
-          paid: "$2,000,000",
-          percentage: "+28%",
-          class: "primary"
-        },
-        {
-          img: "media/svg/avatars/018-girl-9.svg",
-          name: "Jessie Clarcson",
-          desc: "HTML, CSS Coding",
-          paid: "$1,200,000",
-          percentage: "+52%",
-          class: "warning"
-        },
-        {
-          img: "media/svg/avatars/047-girl-25.svg",
-          name: "Lebron Wayde",
-          desc: "ReactJS Developer",
-          paid: "$3,400,000",
-          percentage: "-34%",
-          class: "danger"
-        },
-        {
-          img: "media/svg/avatars/014-girl-7.svg",
-          name: "Natali Trump",
-          desc: "UI/UX Designer",
-          paid: "$4,500,000",
-          percentage: "+48%",
-          class: "success"
-        },
-        {
-          img: "media/svg/avatars/043-boy-18.svg",
-          name: "Kevin Leonard",
-          desc: "Art Director",
-          paid: "$35,600,000",
-          percentage: "+230%",
-          class: "success"
-        }
+      SQL: [      
+        // {
+        //   img: "media/svg/avatars/043-boy-18.svg",
+        //   name: "Kevin Leonard",
+        //   desc: "Art Director",
+        //   paid: "$35,600,000",
+        //   percentage: "+230%",
+        //   class: "success"
+        // } 
       ]
     };
   },
+  methods:{
+    test(val){
+      alert(val)
+      this.$router.replace('/article')
+    }
+  },
+  mounted(){
+    getAbstract().then((res)=>{
+      //console.log(res.data)
+      for(var item in res.data){
+        // console.log(res.data[item])
+        if(res.data[item].type==='Language')
+        {
+          this.language.push(res.data[item])
+        }else if(res.data[item].type==='SQL')
+        {
+          this.SQL.push(res.data[item])
+        }
+        else if(res.data[item].type==='Algorithm')
+        {
+          this.Algorithm.push(res.data[item])
+        }
+      }
+    })
+  },
   computed: {
     dataToShow() {
-      if (this.show === "month") return this.month;
-      if (this.show === "week") return this.week;
-      if (this.show === "day") return this.day;
-      return this.day;
+      if (this.show === "language") return this.language;
+      if (this.show === "Algorithm") return this.Algorithm;
+      if (this.show === "SQL") return this.SQL;
+      return this.language;
     }
   }
 };

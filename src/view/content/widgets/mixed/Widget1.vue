@@ -4,7 +4,7 @@
   >
     <!--begin::Header-->
     <div class="card-header border-0 py-5">
-      <h3 class="card-title font-weight-bolder text-white">Sales Progress</h3>
+      <h3 class="card-title font-weight-bolder text-white">My Information</h3>
       <div class="card-toolbar">
         <Dropdown2><i class="ki ki-bold-more-hor text-white"></i></Dropdown2>
       </div>
@@ -13,45 +13,161 @@
     <!--begin::Body-->
     <div class="card-body d-flex flex-column p-0">
       <!--begin::Chart-->
-      <apexchart
-        class="card-rounded-bottom"
-        :options="chartOptions"
-        :series="series"
-        type="bar"
-      ></apexchart>
       <!--end::Chart-->
       <!--begin::Stats-->
       <div class="card-spacer bg-white card-rounded flex-grow-1">
         <!--begin::Row-->
         <div class="row m-0">
-          <div class="col px-8 py-6 mr-8">
-            <div class="font-size-sm text-muted font-weight-bold">
-              Average Sale
-            </div>
-            <div class="font-size-h4 font-weight-bolder">$650</div>
+          <div class="d-flex align-items-center mt-5">
+          <div class="symbol symbol-100 mr-5">
+            <img class="symbol-label" :src="picture" alt="" />
+            <i class="symbol-badge bg-success"></i>
           </div>
-          <div class="col px-8 py-6">
-            <div class="font-size-sm text-muted font-weight-bold">
-              Commission
+          <div class="d-flex flex-column">
+            <a
+              href="#"
+              class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
+            >
+              Noah Chen(陈雨烟)
+            </a>
+            <div class="text-muted mt-1">Application Developer</div>
+            <div class="navi mt-2">
+              <a href="#" class="navi-item">
+                <span class="navi-link p-0 pb-2">
+                  <span class="navi-icon mr-1">
+                    <span class="svg-icon svg-icon-lg svg-icon-primary">
+                      <!--begin::Svg Icon-->
+                      <inline-svg
+                        src="media/svg/icons/Communication/Mail-notification.svg"
+                      />
+                      <!--end::Svg Icon-->
+                    </span>
+                  </span>
+                  <span class="navi-text text-muted text-hover-primary">
+                    746562737@qq.com
+                  </span>
+                </span>
+              </a>
             </div>
-            <div class="font-size-h4 font-weight-bolder">$233,600</div>
+            <button class="btn btn-light-primary btn-bold">
+              Pass
+            </button>
           </div>
         </div>
-        <!--end::Row-->
-        <!--begin::Row-->
-        <div class="row m-0">
-          <div class="col px-8 py-6 mr-8">
-            <div class="font-size-sm text-muted font-weight-bold">
-              Annual Taxes
+
+        <div class="navi navi-spacer-x-0 p-0">
+          <!--begin::Item-->
+          <a
+            to="/builder"
+            @click.native="closeOffcanvas"
+            href="#"
+            class="navi-item"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-success">
+                    <!--begin::Svg Icon-->
+                    <inline-svg
+                      src="media/svg/icons/General/Github.svg"
+                    />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">Github</div>
+                <div class="text-muted">
+                 Check My Github
+                  <!-- <span
+                    class="label label-light-danger label-inline font-weight-bold"
+                  >
+                    update
+                  </span> -->
+                </div>
+              </div>
             </div>
-            <div class="font-size-h4 font-weight-bolder">$29,004</div>
-          </div>
-          <div class="col px-8 py-6">
-            <div class="font-size-sm text-muted font-weight-bold">
-              Annual Income
+          </a>
+          <!--end:Item-->
+          <!--begin::Item-->
+          <router-link      
+            to=""
+            @click.native="showWechat()"
+            href="#"
+            class="navi-item"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-warning">
+                    <!--begin::Svg Icon-->
+                    <inline-svg src="media/svg/icons/Shopping/wechat.svg" />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">Wechat</div>
+                <div class="text-muted">Contact Me For Anything</div>
+              </div>
             </div>
-            <div class="font-size-h4 font-weight-bolder">$1,480,00</div>
-          </div>
+          </router-link>
+          <!--end:Item-->
+          <!--begin::Item-->
+          <router-link
+            to="/resume"
+            @click.native="closeOffcanvas"
+            href="#"
+            class="navi-item"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-danger">
+                    <!--begin::Svg Icon-->
+                    <inline-svg src="media/svg/icons/Files/Selected-file.svg" />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">My Resume</div>
+                <div class="text-muted">Looking For A Job</div>
+              </div>
+            </div>
+          </router-link>
+          <!--end:Item-->
+          <!--begin::Item-->
+          <a
+            href="https://weibo.com/u/5488919907"
+            @click.native="closeOffcanvas"
+            class="navi-item"
+            target="_blank"
+          >
+            <div class="navi-link">
+              <div class="symbol symbol-40 bg-light mr-3">
+                <div class="symbol-label">
+                  <span class="svg-icon svg-icon-md svg-icon-primary">
+                    <!--begin::Svg Icon-->
+                    <inline-svg
+                      src="media/svg/icons/Communication/weibo.svg"
+                    />
+                    <!--end::Svg Icon-->
+                  </span>
+                </div>
+              </div>
+              <div class="navi-text">
+                <div class="font-weight-bold">My Weibo</div>
+                <div class="text-muted">Check My Weibo</div>
+              </div>
+            </div>
+          </a>
+          <!--end:Item-->
+        </div>
+
+
+
+
         </div>
         <!--end::Row-->
       </div>
@@ -64,7 +180,7 @@
 <script>
 import Dropdown2 from "@/view/content/dropdown/Dropdown2.vue";
 import { mapGetters } from "vuex";
-
+import Bus from "@/utils/bus.js"
 export default {
   name: "widget-10",
   components: {
@@ -73,6 +189,7 @@ export default {
   data() {
     return {
       chartOptions: {},
+      wechatflag:false,
       series: [
         {
           name: "Net Profit",
@@ -85,11 +202,21 @@ export default {
       ]
     };
   },
+  methods:{
+    showWechat(){
+      this.wechatflag=true;
+      Bus.$emit('wechatflag', this.wechatflag)
+    }
+  },
   computed: {
-    ...mapGetters(["layoutConfig"])
+    ...mapGetters(["layoutConfig"]),
+    picture() {
+      return process.env.BASE_URL + "media/users/noah.jpg";
+    }
   },
   mounted() {
     // reference; kt_mixed_widget_1_chart
+    Bus.$emit('wechatflag', this.wechatflag)
     this.chartOptions = {
       chart: {
         type: "bar",

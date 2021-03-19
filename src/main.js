@@ -29,6 +29,7 @@ import "@/core/plugins/apexcharts";
 import "@/core/plugins/metronic";
 import "@/core/plugins/treeselect";
 import "@mdi/font/css/materialdesignicons.css";
+import "@/assets/iconfont/iconfont.css"
 
 // API service init
 ApiService.init();

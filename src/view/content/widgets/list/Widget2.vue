@@ -4,10 +4,10 @@
     <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label font-weight-bolder text-dark"
-          >New Arrivals</span
+          >文章摘要</span
         >
         <span class="text-muted mt-3 font-weight-bold font-size-sm"
-          >More than 400+ new members</span
+          >More than 400+ new members111111111</span
         >
       </h3>
       <div class="card-toolbar">
@@ -122,7 +122,7 @@ export default {
   data() {
     return {
       show: "day",
-      month: [
+      python: [
         {
           title: "Popular Authors",
           desc: "Most Successful",
@@ -159,7 +159,7 @@ export default {
           img: "media/svg/misc/014-kickstarter.svg"
         }
       ],
-      week: [
+      Algorithm: [
         {
           title: "Bestseller Theme",
           desc: "Amazing Templates",
@@ -237,8 +237,8 @@ export default {
   },
   computed: {
     dataToShow() {
-      if (this.show === "month") return this.month;
-      if (this.show === "week") return this.week;
+      if (this.show === "python") return this.python;
+      if (this.show === "Algorithm") return this.Algorithm;
       if (this.show === "day") return this.day;
       return this.day;
     }

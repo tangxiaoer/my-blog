@@ -6,15 +6,18 @@
         class="d-flex align-items-center justify-content-between card-spacer flex-grow-1"
       >
         <span class="symbol symbol-circle symbol-50 symbol-light-danger mr-2">
-          <span class="symbol-label">
-            <span class="svg-icon svg-icon-xl svg-icon-danger">
-              <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
-            </span>
-          </span>
+          <span class="text-dark-75 font-weight-bolder font-size-h3">{{count}}</span>
+          <p><span class="text-muted font-weight-bold mt-2">Do You Like Me?</span></p>
         </span>
         <div class="d-flex flex-column text-right">
-          <span class="text-dark-75 font-weight-bolder font-size-h3">750$</span>
-          <span class="text-muted font-weight-bold mt-2">Weekly Income</span>
+
+          <span class="symbol-label">
+            <span class="svg-icon svg-icon-xl svg-icon-danger">
+              <!-- <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" /> -->
+              <i v-if="!isLiked" class="iconfont icon-xinaixin1" style="font-size:50px;cursor:pointer;" @click="likeme"></i>
+              <i v-if="isLiked" class="iconfont icon-xin1" style="font-size:50px;cursor:pointer;color:red" @click="likeme"></i>
+            </span>
+          </span>
         </div>
       </div>
       <!--begin::Chart-->
@@ -32,16 +35,19 @@
 
 <script>
 import { mapGetters } from "vuex";
+import {getliked,setliked} from "@/api/index.js";
 
 export default {
   name: "widget-7",
   data() {
     return {
       chartOptions: {},
+      count:0,
+      isLiked:false,
       series: [
         {
           name: "Net Profit",
-          data: [40, 40, 30, 30, 35, 35, 50]
+          data: [40, 40, 40, 40, 40, 40, 40]
         }
       ]
     };
@@ -49,7 +55,38 @@ export default {
   computed: {
     ...mapGetters(["layoutConfig"])
   },
+  methods:{
+    likeme(){
+      if(this.isLiked===true)
+      {
+        let data=
+        {
+          type:"del"
+        }
+        setliked(data).then((res)=>{
+
+        })
+        this.isLiked=false
+        this.count-=1
+      }else
+      {
+        let data=
+        {
+          type:"add"
+        }
+        setliked(data).then((res)=>{
+
+        })
+        this.isLiked=true
+        this.count+=1
+      }
+
+    }
+  },
   mounted() {
+    getliked().then((res) => {
+            this.count=res.data
+      })
     // reference; kt_stats_widget_7_chart
     this.chartOptions = {
       chart: {
